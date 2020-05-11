@@ -1,5 +1,5 @@
 /*
-Copyright (c) 2009-2018, Intel Corporation
+Copyright (c) 2009-2020, Intel Corporation
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -363,22 +363,22 @@ struct FixedEventControlRegister
 
 inline std::ostream & operator << (std::ostream & o, const FixedEventControlRegister & reg)
 {
-    o << "os0\t\t" << reg.fields.os0 << std::endl;
-    o << "usr0\t\t" << reg.fields.usr0 << std::endl;
-    o << "any_thread0\t" << reg.fields.any_thread0 << std::endl;
-    o << "enable_pmi0\t" << reg.fields.enable_pmi0 << std::endl;
+    o << "os0\t\t" << reg.fields.os0 << "\n";
+    o << "usr0\t\t" << reg.fields.usr0 << "\n";
+    o << "any_thread0\t" << reg.fields.any_thread0 << "\n";
+    o << "enable_pmi0\t" << reg.fields.enable_pmi0 << "\n";
 
-    o << "os1\t\t" << reg.fields.os1 << std::endl;
-    o << "usr1\t\t" << reg.fields.usr1 << std::endl;
-    o << "any_thread1\t" << reg.fields.any_thread1 << std::endl;
-    o << "enable_pmi10\t" << reg.fields.enable_pmi1 << std::endl;
+    o << "os1\t\t" << reg.fields.os1 << "\n";
+    o << "usr1\t\t" << reg.fields.usr1 << "\n";
+    o << "any_thread1\t" << reg.fields.any_thread1 << "\n";
+    o << "enable_pmi10\t" << reg.fields.enable_pmi1 << "\n";
 
-    o << "os2\t\t" << reg.fields.os2 << std::endl;
-    o << "usr2\t\t" << reg.fields.usr2 << std::endl;
-    o << "any_thread2\t" << reg.fields.any_thread2 << std::endl;
-    o << "enable_pmi2\t" << reg.fields.enable_pmi2 << std::endl;
+    o << "os2\t\t" << reg.fields.os2 << "\n";
+    o << "usr2\t\t" << reg.fields.usr2 << "\n";
+    o << "any_thread2\t" << reg.fields.any_thread2 << "\n";
+    o << "enable_pmi2\t" << reg.fields.enable_pmi2 << "\n";
 
-    o << "reserved1\t" << reg.fields.reserved1 << std::endl;
+    o << "reserved1\t" << reg.fields.reserved1 << "\n";
     return o;
 }
 
@@ -573,6 +573,21 @@ struct BecktonUncorePMUCNTCTLRegister
 #define KNL_EDC6_ECLK_REGISTER_FUNC_ADDR (2)
 #define KNL_EDC7_ECLK_REGISTER_DEV_ADDR (31)
 #define KNL_EDC7_ECLK_REGISTER_FUNC_ADDR (2)
+
+#define HSX_HA0_REGISTER_DEV_ADDR (18)
+#define HSX_HA0_REGISTER_FUNC_ADDR (1)
+#define HSX_HA1_REGISTER_DEV_ADDR (18)
+#define HSX_HA1_REGISTER_FUNC_ADDR (5)
+
+#define XPF_HA_PCI_PMON_BOX_CTL_ADDR    (0xF4)
+#define XPF_HA_PCI_PMON_CTL0_ADDR       (0xD8 + 4*0)
+#define XPF_HA_PCI_PMON_CTL1_ADDR       (0xD8 + 4*1)
+#define XPF_HA_PCI_PMON_CTL2_ADDR       (0xD8 + 4*2)
+#define XPF_HA_PCI_PMON_CTL3_ADDR       (0xD8 + 4*3)
+#define XPF_HA_PCI_PMON_CTR0_ADDR       (0xA0 + 8*0)
+#define XPF_HA_PCI_PMON_CTR1_ADDR       (0xA0 + 8*1)
+#define XPF_HA_PCI_PMON_CTR2_ADDR       (0xA0 + 8*2)
+#define XPF_HA_PCI_PMON_CTR3_ADDR       (0xA0 + 8*3)
 
 /**
  * XPF_ for Xeons: SNB, IVT, HSX, BDW, etc.
@@ -838,6 +853,9 @@ struct BecktonUncorePMUCNTCTLRegister
 
 #define JKT_CBO_MSR_PMON_BOX_FILTER_OPC(x) (x << 23UL)
 #define IVTHSX_CBO_MSR_PMON_BOX_FILTER1_OPC(x) (x << 20UL)
+#define BDX_CBO_MSR_PMON_BOX_GET_OPC0(x) ((x >> 20) & 0x3FF)
+#define BDX_CBO_MSR_PMON_BOX_GET_FLT(x) ((x >> 0x10) & 0x1)
+#define BDX_CBO_MSR_PMON_BOX_GET_TID(x) ((x >> 0x11) & 0x1)
 
 #define SKX_CHA_MSR_PMON_BOX_FILTER1_REM(x) (x << 0UL)
 #define SKX_CHA_MSR_PMON_BOX_FILTER1_LOC(x) (x << 1UL)
@@ -846,6 +864,9 @@ struct BecktonUncorePMUCNTCTLRegister
 #define SKX_CHA_MSR_PMON_BOX_FILTER1_OPC0(x) ((x) << 9UL)
 #define SKX_CHA_MSR_PMON_BOX_FILTER1_OPC1(x) ((x) << 19UL)
 #define SKX_CHA_MSR_PMON_BOX_FILTER1_NC(x) (x << 30UL)
+#define SKX_CHA_MSR_PMON_BOX_FILTER1_RSV(x) (x << 2UL)
+#define SKX_CHA_MSR_PMON_BOX_GET_OPC0(x) ((x >> 9) & 0x3FF)
+#define SKX_CHA_MSR_PMON_BOX_GET_NC(x) ((x >> 0x1e) & 0x1)
 
 #define SKX_CHA_TOR_INSERTS_UMASK_IRQ(x) (x << 0)
 #define SKX_CHA_TOR_INSERTS_UMASK_PRQ(x) (x << 2)
@@ -878,6 +899,15 @@ struct BecktonUncorePMUCNTCTLRegister
 #define M2M_PCI_PMON_CTL_EN         (1 << 22)
 #define M2M_PCI_PMON_CTL_INVERT     (1 << 23)
 #define M2M_PCI_PMON_CTL_THRESH(x)  ((x) << 24ULL)
+
+#define HA_PCI_PMON_CTL_EVENT(x)   ((x) << 0)
+#define HA_PCI_PMON_CTL_UMASK(x)   ((x) << 8)
+#define HA_PCI_PMON_CTL_RST        (1 << 17)
+#define HA_PCI_PMON_CTL_EDGE_DET   (1 << 18)
+#define HA_PCI_PMON_CTL_OV_EN      (1 << 20)
+#define HA_PCI_PMON_CTL_EN         (1 << 22)
+#define HA_PCI_PMON_CTL_INVERT     (1 << 23)
+#define HA_PCI_PMON_CTL_THRESH(x)  ((x) << 24ULL)
 
 #define UCLK_FIXED_CTL_OV_EN (1 << 20)
 #define UCLK_FIXED_CTL_EN    (1 << 22)
@@ -960,7 +990,7 @@ struct MCFGRecord
     void print()
     {
         std::cout << "BaseAddress=" << (std::hex) << "0x" << baseAddress << " PCISegmentGroupNumber=0x" << PCISegmentGroupNumber <<
-            " startBusNumber=0x" << (unsigned)startBusNumber << " endBusNumber=0x" << (unsigned)endBusNumber << std::endl;
+            " startBusNumber=0x" << (unsigned)startBusNumber << " endBusNumber=0x" << (unsigned)endBusNumber << "\n";
     }
 };
 
@@ -984,7 +1014,7 @@ struct MCFGHeader
 
     void print()
     {
-        std::cout << "Header: length=" << length << " nrecords=" << nrecords() << std::endl;
+        std::cout << "Header: length=" << length << " nrecords=" << nrecords() << "\n";
     }
 };
 
